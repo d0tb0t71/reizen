@@ -108,6 +108,16 @@
             android:textAlignment="center"
             />
 
+        <TextView
+            android:id="@+id/goPlaceListTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:paddingVertical="8dp"
+            android:text="Go Place List"
+            android:textAlignment="center"
+            />
+
 
     </LinearLayout>
 

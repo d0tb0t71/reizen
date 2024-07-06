@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PlaceListActivity"
+    >
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/placeListRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp"
+        android:layout_above="@id/pageControlBar"
+        />
+
+    <ProgressBar
+        android:id="@+id/progressView"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:padding="10dp"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        />
+
+    <LinearLayout
+        android:id="@+id/pageControlBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="4"
+        android:layout_alignParentBottom="true"
+        >
+
+        <TextView
+            android:id="@+id/firstTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="First"
+            android:textAlignment="center"
+            android:layout_margin="5dp"
+            />
+
+        <TextView
+            android:id="@+id/prevTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Prev"
+            android:textAlignment="center"
+            android:layout_margin="5dp"
+            />
+
+        <TextView
+            android:id="@+id/nextTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Next"
+            android:textAlignment="center"
+            android:layout_margin="5dp"
+            />
+
+        <TextView
+            android:id="@+id/lastTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Last"
+            android:textAlignment="center"
+            android:layout_margin="5dp"
+            />
+
+
+    </LinearLayout>
+
+</RelativeLayout>

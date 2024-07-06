@@ -25,12 +25,13 @@
             android:fontFamily="@font/inter_regular"
             android:textColor="@color/navyBlue"
             android:textAlignment="center"
+            android:padding="8dp"
             />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Login"
+            android:text="Create\nAccount"
             android:textSize="25sp"
             android:fontFamily="@font/poppins_bold"
             android:textAlignment="center"
@@ -39,10 +40,19 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Log in to continue"
-            android:textSize="12sp"
+            android:text="FULL NAME"
             android:fontFamily="@font/poppins_regular"
-            android:textAlignment="center"
+            android:textAlignment="textStart"
+            android:layout_marginTop="20dp"
+            android:paddingVertical="8dp"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/edittext_bg"
+            android:hint="User Full Name"
+            android:padding="12dp"
             />
         <TextView
             android:layout_width="match_parent"
@@ -50,10 +60,9 @@
             android:text="EMAIL"
             android:fontFamily="@font/poppins_regular"
             android:textAlignment="textStart"
-            android:layout_marginTop="20dp"
             android:paddingVertical="8dp"
             />
-        
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -84,19 +93,16 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:paddingVertical="8dp"
-            android:text="Forgot Password?"
-            android:textAlignment="textEnd"
+            android:text="CONFIRM PASSWORD"
+            android:textAlignment="textStart"
             />
 
-        <Button
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/button_bg"
-            android:text="LOGIN NOW"
-            android:textColor="@color/white"
-            android:fontFamily="@font/poppins_bold"
-            android:textSize="14sp"
-            android:layout_marginVertical="8dp"
+            android:background="@drawable/edittext_bg"
+            android:hint="********"
+            android:padding="12dp"
             />
 
         <TextView
@@ -104,7 +110,34 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:paddingVertical="8dp"
-            android:text="Not registered yet? Register in here."
+            android:text="MOBILE"
+            android:textAlignment="textStart"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/edittext_bg"
+            android:hint="ENTER MOBILE NUMBER"
+            android:padding="12dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/button_bg"
+            android:text="REGISTER NOW"
+            android:textColor="@color/white"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="14sp"
+            android:layout_marginVertical="14dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:paddingVertical="8dp"
+            android:text="Already Registered? Log in here."
             android:textAlignment="center"
             />
 

@@ -48,6 +48,7 @@
             />
 
         <EditText
+            android:id="@+id/reg_name"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/edittext_bg"
@@ -64,6 +65,7 @@
             />
 
         <EditText
+            android:id="@+id/reg_email"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/edittext_bg"
@@ -81,6 +83,7 @@
             />
 
         <EditText
+            android:id="@+id/reg_pass"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/edittext_bg"
@@ -98,6 +101,7 @@
             />
 
         <EditText
+            android:id="@+id/reg_cpass"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/edittext_bg"
@@ -115,6 +119,7 @@
             />
 
         <EditText
+            android:id="@+id/reg_mobile"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/edittext_bg"
@@ -122,6 +127,7 @@
             android:padding="12dp" />
 
         <Button
+            android:id="@+id/reg_now"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/button_bg"
@@ -133,6 +139,7 @@
             />
 
         <TextView
+            android:id="@+id/go_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"

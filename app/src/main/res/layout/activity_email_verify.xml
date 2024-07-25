@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".EmailVerifyActivity">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="20dp"
+        android:layout_margin="20dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:gravity="center"
+            >
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Please verify your email and then please click on this refresh button"
+                android:textSize="20dp"
+                android:textAlignment="center"
+
+                />
+
+            <Button
+                android:id="@+id/verify_refresh_btn"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_margin="20dp"
+                android:backgroundTint="@color/darkBlue"
+                android:text="Refresh"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                />
+
+            <TextView
+                android:id="@+id/resendVmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Resend verification link"
+                android:textSize="16dp"
+                android:textColor="#00A6FF"
+                android:textAlignment="center"
+
+                />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -8,72 +8,106 @@
     tools:context=".PlaceListActivity"
     >
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/placeListRecyclerView"
-        android:layout_width="match_parent"
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navView"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:padding="20dp"
-        android:layout_above="@id/pageControlBar"
+        app:menu="@menu/drawer_item"
+        app:headerLayout="@layout/drawer_header"
+        android:background="@color/white"
+        android:layout_gravity="start"
+        android:visibility="visible"
+        app:itemIconTint="@color/black"
+        app:itemTextColor="@color/black"
         />
 
-    <ProgressBar
-        android:id="@+id/progressView"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:padding="10dp"
-        android:layout_centerInParent="true"
-        android:visibility="gone"
-        />
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       >
 
-    <LinearLayout
-        android:id="@+id/pageControlBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="4"
-        android:layout_alignParentBottom="true"
-        >
+       <LinearLayout
+           android:id="@+id/top_view"
+           android:layout_width="match_parent"
+           android:layout_height="70dp"
+           >
 
-        <TextView
-            android:id="@+id/firstTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="First"
-            android:textAlignment="center"
-            android:layout_margin="5dp"
-            />
+           <include
+               layout="@layout/top_action_bar"
+               />
 
-        <TextView
-            android:id="@+id/prevTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Prev"
-            android:textAlignment="center"
-            android:layout_margin="5dp"
-            />
+       </LinearLayout>
 
-        <TextView
-            android:id="@+id/nextTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Next"
-            android:textAlignment="center"
-            android:layout_margin="5dp"
-            />
+       <androidx.recyclerview.widget.RecyclerView
+           android:id="@+id/placeListRecyclerView"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:padding="20dp"
+           android:layout_above="@id/pageControlBar"
+           android:layout_below="@id/top_view"
+           />
 
-        <TextView
-            android:id="@+id/lastTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Last"
-            android:textAlignment="center"
-            android:layout_margin="5dp"
-            />
+       <ProgressBar
+           android:id="@+id/progressView"
+           android:layout_width="60dp"
+           android:layout_height="60dp"
+           android:padding="10dp"
+           android:layout_centerInParent="true"
+           android:visibility="gone"
+           />
+
+       <LinearLayout
+           android:id="@+id/pageControlBar"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:weightSum="4"
+           android:layout_alignParentBottom="true"
+           >
+
+           <TextView
+               android:id="@+id/firstTV"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_weight="1"
+               android:text="First"
+               android:textAlignment="center"
+               android:layout_margin="5dp"
+               />
+
+           <TextView
+               android:id="@+id/prevTV"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_weight="1"
+               android:text="Prev"
+               android:textAlignment="center"
+               android:layout_margin="5dp"
+               />
+
+           <TextView
+               android:id="@+id/nextTV"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_weight="1"
+               android:text="Next"
+               android:textAlignment="center"
+               android:layout_margin="5dp"
+               />
+
+           <TextView
+               android:id="@+id/lastTV"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_weight="1"
+               android:text="Last"
+               android:textAlignment="center"
+               android:layout_margin="5dp"
+               />
 
 
-    </LinearLayout>
+       </LinearLayout>
 
-</RelativeLayout>
+
+   </RelativeLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>

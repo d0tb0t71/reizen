@@ -48,8 +48,8 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.MyViewHolder
         Glide.with(context)
                 .load(placeModel.getImg_url())
                 .apply(new RequestOptions()
-                        .placeholder(R.drawable.baseline_home_24) // Placeholder image
-                        .error(R.drawable.baseline_home_24) // Error image in case of loading failure
+                        .placeholder(R.drawable.loading) // Placeholder image
+                        .error(R.drawable.broken_image) // Error image in case of loading failure
                 )
                 .into(holder.placeImageIV);
 

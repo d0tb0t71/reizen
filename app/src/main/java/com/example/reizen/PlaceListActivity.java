@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,17 +14,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.reizen.adapters.PlaceAdapter;
 import com.example.reizen.interfaces.OnClickListeners;
 import com.example.reizen.models.PlaceModel;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
 public class PlaceListActivity extends AppCompatActivity implements OnClickListeners {
 
+
+    DrawerLayout drawerLayout;
+    ImageView backBtn, navBtn;
+    NavigationView navView;
     PlaceScrapper placeScrapper = new PlaceScrapper();
     ArrayList<PlaceModel> placeList = new ArrayList<PlaceModel>();
 
@@ -78,8 +85,10 @@ public class PlaceListActivity extends AppCompatActivity implements OnClickListe
             @Override
             public void onClick(View v) {
 
-                currentIndex -= 1;
-                getPlaceList(currentIndex);
+                if (currentIndex > 1){
+                    currentIndex += 1;
+                    getPlaceList(currentIndex);
+                }
 
             }
         });
@@ -89,8 +98,10 @@ public class PlaceListActivity extends AppCompatActivity implements OnClickListe
             @Override
             public void onClick(View v) {
 
-                currentIndex += 1;
-                getPlaceList(currentIndex);
+                if (currentIndex < 100){
+                    currentIndex += 1;
+                    getPlaceList(currentIndex);
+                }
 
             }
         });

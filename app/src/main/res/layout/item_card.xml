@@ -9,14 +9,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:padding="20dp"
+        android:padding="12dp"
         android:background="@drawable/rounded_bg"
         >
 
         <ImageView
             android:id="@+id/placeImageIV"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:src="@color/darkBlue"
             android:scaleType="centerCrop"
             />
@@ -35,7 +35,8 @@
                 android:layout_height="wrap_content"
                 android:text="Jaflong"
                 android:fontFamily="@font/poppins_bold"
-                android:textSize="16sp"
+                android:textColor="@color/darkBlue"
+                android:textSize="14sp"
                 android:maxLines="2"
                 />
 
@@ -45,7 +46,8 @@
                 android:layout_height="wrap_content"
                 android:text="Jaflong"
                 android:fontFamily="@font/poppins_regular"
-                android:textSize="12sp"
+                android:textColor="@color/navyBlue"
+                android:textSize="10sp"
                 android:maxLines="1"
                 />
 

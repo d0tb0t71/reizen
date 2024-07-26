@@ -11,6 +11,11 @@
         android:title="Profile"
         android:icon="@drawable/baseline_home_24"
         />
+    <item
+        android:id="@+id/WishlistMenu"
+        android:title="Profile"
+        android:icon="@drawable/baseline_home_24"
+        />
 
     <item
         android:id="@+id/HelpMenu"

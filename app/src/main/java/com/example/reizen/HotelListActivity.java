@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -20,25 +19,28 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.reizen.adapters.HotelAdapter;
 import com.example.reizen.adapters.PlaceAdapter;
 import com.example.reizen.interfaces.OnClickListeners;
+import com.example.reizen.models.HotelModel;
 import com.example.reizen.models.PlaceModel;
+import com.example.reizen.scrappers.HotelScrapper;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
-public class PlaceListActivity extends AppCompatActivity implements OnClickListeners {
+public class HotelListActivity extends AppCompatActivity implements OnClickListeners {
 
 
     DrawerLayout drawerLayout;
     ImageView backBtn, navBtn;
     NavigationView navView;
-    PlaceScrapper placeScrapper = new PlaceScrapper();
-    ArrayList<PlaceModel> placeList = new ArrayList<PlaceModel>();
+    HotelScrapper hotelScrapper = new HotelScrapper();
+    ArrayList<HotelModel> hotelList = new ArrayList<HotelModel>();
 
-    RecyclerView placeListRecyclerView;
-    PlaceAdapter placeAdapter;
+    RecyclerView hotelListRecyclerView;
+    HotelAdapter hotelAdapter;
 
     int currentIndex = 1;
     TextView firstTV, prevTV, nextTV, lastTV;
@@ -48,26 +50,26 @@ public class PlaceListActivity extends AppCompatActivity implements OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_place_list);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.drawerLayout), (v, insets) -> {
+        setContentView(R.layout.activity_hotel_list);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.hotelListDrawerLayout), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        drawerLayout = findViewById(R.id.drawerLayout);
-        navView = findViewById(R.id.navView);
+        drawerLayout = findViewById(R.id.hotelListDrawerLayout);
+        navView = findViewById(R.id.hotelListNavView);
         navBtn = findViewById(R.id.navBtn);
         navView.bringToFront();
 
-        placeListRecyclerView = findViewById(R.id.placeListRecyclerView);
-        progressView = findViewById(R.id.progressView);
-        firstTV = findViewById(R.id.firstTV);
-        prevTV = findViewById(R.id.prevTV);
-        nextTV = findViewById(R.id.nextTV);
-        lastTV = findViewById(R.id.lastTV);
+        hotelListRecyclerView = findViewById(R.id.hotelListRecyclerView);
+        progressView = findViewById(R.id.hotelListProgressView);
+//        firstTV = findViewById(R.id.firstTV);
+//        prevTV = findViewById(R.id.prevTV);
+//        nextTV = findViewById(R.id.nextTV);
+//        lastTV = findViewById(R.id.lastTV);
 
-        getPlaceList(currentIndex);
+        getHotelList(currentIndex);
 
         navBtn.setOnClickListener(v-> {
 
@@ -107,82 +109,31 @@ public class PlaceListActivity extends AppCompatActivity implements OnClickListe
             }
         });
 
-        nextTV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                currentIndex += 1;
-                getPlaceList(currentIndex);
-
-            }
-        });
-
-        firstTV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                currentIndex = 1;
-                getPlaceList(currentIndex);
-
-            }
-        });
-
-        prevTV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (currentIndex > 1){
-                    currentIndex += 1;
-                    getPlaceList(currentIndex);
-                }
-
-            }
-        });
-
-
-        nextTV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (currentIndex < 100){
-                    currentIndex += 1;
-                    getPlaceList(currentIndex);
-                }
-
-            }
-        });
-
-        lastTV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                currentIndex = 100;
-                getPlaceList(currentIndex);
-
-            }
-        });
 
 
     }
 
-    private void getPlaceList(int currentIndex){
+    private void getHotelList(int currentIndex){
 
         progressView.setVisibility(View.VISIBLE);
-        placeScrapper.getPlaceList(currentIndex, new PlaceScrapper.PlaceListCallback() {
+        hotelScrapper.getHotelList(currentIndex, new HotelScrapper.HotelListCallback() {
             @Override
-            public void onPlaceListRetrieved(ArrayList<PlaceModel> list) {
+            public void onHotelListRetrieved(ArrayList<HotelModel> list) {
+
+
                 runOnUiThread(() -> {
 
-                    placeList = list;
+                    hotelList = list;
 
                     LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-                    placeListRecyclerView.setLayoutManager(layoutManager);
-                    placeAdapter = new PlaceAdapter(getApplicationContext(),placeList, PlaceListActivity.this);
-                    placeListRecyclerView.setAdapter(placeAdapter);
+                    hotelListRecyclerView.setLayoutManager(layoutManager);
+                    hotelAdapter = new HotelAdapter(getApplicationContext(),hotelList, HotelListActivity.this);
+                    hotelListRecyclerView.setAdapter(hotelAdapter);
 
                     progressView.setVisibility(View.GONE);
 
                 });
+
             }
         });
 
@@ -192,14 +143,14 @@ public class PlaceListActivity extends AppCompatActivity implements OnClickListe
     public <T> void onClick(T model) {
 
         if (model instanceof PlaceModel) {
-            PlaceModel placeModel = (PlaceModel) model;
-
-            Intent intent = new Intent(getApplicationContext(), PlaceDetailsActivity.class);
-            intent.putExtra("placeName", placeModel.getName());
-            intent.putExtra("placeLocation", placeModel.getAddress());
-            intent.putExtra("placeImgUrl", placeModel.getImg_url());
-
-            startActivity(intent);
+//            PlaceModel placeModel = (PlaceModel) model;
+//
+//            Intent intent = new Intent(getApplicationContext(), PlaceDetailsActivity.class);
+//            intent.putExtra("placeName", placeModel.getName());
+//            intent.putExtra("placeLocation", placeModel.getAddress());
+//            intent.putExtra("placeImgUrl", placeModel.getImg_url());
+//
+//            startActivity(intent);
         }
 
     }

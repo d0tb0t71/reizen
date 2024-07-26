@@ -1,7 +1,9 @@
 package com.example.reizen;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,6 +21,8 @@ public class PlaceDetailsActivity extends AppCompatActivity {
     ImageView dePlaceImgIV;
     TextView dePlaceNameTV, dePlaceLocTV;
 
+    Button goHotelList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +37,7 @@ public class PlaceDetailsActivity extends AppCompatActivity {
         dePlaceNameTV = findViewById(R.id.dePlaceNameTV);
         dePlaceLocTV = findViewById(R.id.dePlaceLocTV);
         dePlaceImgIV = findViewById(R.id.dePlaceImgIV);
+        goHotelList = findViewById(R.id.goHotelList);
 
         String placeName = getIntent().getStringExtra("placeName");
         String placeLocation = getIntent().getStringExtra("placeLocation");
@@ -49,6 +54,12 @@ public class PlaceDetailsActivity extends AppCompatActivity {
 
         dePlaceNameTV.setText(placeName);
         dePlaceLocTV.setText(placeLocation);
+
+        goHotelList.setOnClickListener(v-> {
+
+            startActivity(new Intent(getApplicationContext(), HotelListActivity.class));
+
+        });
 
 
     }

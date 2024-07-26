@@ -94,29 +94,17 @@
             >
 
             <Button
+                android:id="@+id/goHotelList"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:background="@drawable/button_bg"
-                android:text="Hotels"
+                android:text="Hotel List"
                 android:textColor="@color/white"
                 android:fontFamily="@font/poppins_bold"
                 android:textSize="14sp"
                 android:layout_marginVertical="8dp"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:layout_marginRight="5dp"
-                />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:background="@drawable/button_bg"
-                android:text="Restaurants"
-                android:textColor="@color/white"
-                android:fontFamily="@font/poppins_bold"
-                android:textSize="14sp"
-                android:layout_marginVertical="8dp"
-                android:layout_weight="1"
-                android:layout_marginLeft="5dp"
                 />
 
         </LinearLayout>

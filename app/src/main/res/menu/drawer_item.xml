@@ -4,35 +4,35 @@
     <item
         android:id="@+id/HomeMenu"
         android:title="Home"
-        android:icon="@drawable/baseline_home_24"
+        android:icon="@drawable/home"
         />
     <item
         android:id="@+id/ProfileMenu"
         android:title="Profile"
-        android:icon="@drawable/baseline_home_24"
+        android:icon="@drawable/profile"
         />
     <item
         android:id="@+id/WishlistMenu"
-        android:title="Profile"
-        android:icon="@drawable/baseline_home_24"
+        android:title="Wishlist"
+        android:icon="@drawable/wishlist"
         />
 
     <item
         android:id="@+id/HelpMenu"
         android:title="Help"
-        android:icon="@drawable/baseline_home_24"
+        android:icon="@drawable/magnify"
         />
 
     <item
         android:id="@+id/AboutMenu"
         android:title="About"
-        android:icon="@drawable/baseline_home_24"
+        android:icon="@drawable/info"
         />
 
     <item
         android:id="@+id/LogoutMenu"
         android:title="Logout"
-        android:icon="@drawable/baseline_home_24"
+        android:icon="@drawable/exit"
         />
 
 </menu>

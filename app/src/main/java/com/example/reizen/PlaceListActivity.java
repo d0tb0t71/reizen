@@ -49,11 +49,7 @@ public class PlaceListActivity extends AppCompatActivity implements OnClickListe
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_place_list);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.drawerLayout), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
 
         drawerLayout = findViewById(R.id.drawerLayout);
         navView = findViewById(R.id.navView);

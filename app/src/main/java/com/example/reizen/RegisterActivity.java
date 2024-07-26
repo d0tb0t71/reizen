@@ -46,7 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
             return insets;
         });
 
-        email = findViewById(R.id.reg_name);
+        email = findViewById(R.id.reg_email);
         phone = findViewById(R.id.reg_mobile);
         fullName = findViewById(R.id.reg_name);
         pass = findViewById(R.id.reg_pass);
@@ -58,11 +58,11 @@ public class RegisterActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
 
-        PRBack.setOnClickListener(v -> {
-
-            getOnBackPressedDispatcher().onBackPressed();
-
-        });
+//        PRBack.setOnClickListener(v -> {
+//
+//            getOnBackPressedDispatcher().onBackPressed();
+//
+//        });
 
         reg_btn.setOnClickListener(v->{
 

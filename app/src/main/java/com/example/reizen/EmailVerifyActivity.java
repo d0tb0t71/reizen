@@ -1,5 +1,6 @@
 package com.example.reizen;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -30,11 +31,8 @@ public class EmailVerifyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_email_verify);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+
 
         verify_refresh_btn = findViewById(R.id.verify_refresh_btn);
         resendVmail = findViewById(R.id.resendVmail);
@@ -49,7 +47,8 @@ public class EmailVerifyActivity extends AppCompatActivity {
 
             if(user.isEmailVerified()){
 
-
+                    startActivity(new Intent(getApplicationContext(), PlaceListActivity.class));
+                    finishAffinity();
 
             }
             else{

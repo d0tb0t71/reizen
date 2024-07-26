@@ -2,6 +2,8 @@ package com.example.reizen;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -87,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
                         if(task.isSuccessful() ){
                             if(user.isEmailVerified()){
 
+                                startActivity(new Intent(getApplicationContext(),PlaceListActivity.class));
+                                finishAffinity();
 
                             }
                             else {
@@ -128,6 +132,22 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if (user != null ){
+
+            if(user.isEmailVerified()){
+
+                startActivity(new Intent(getApplicationContext(),PlaceListActivity.class));
+                finishAffinity();
+            }
+
+        }
 
     }
 }

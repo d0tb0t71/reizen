@@ -51,12 +51,14 @@
 
 
             <ImageView
+                android:id="@+id/profileImg"
                 android:layout_width="250dp"
                 android:layout_height="250dp"
-                android:src="@drawable/baseline_home_24"
+                android:src="@drawable/user"
                 />
 
             <TextView
+                android:id="@+id/u_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="User Name"
@@ -77,6 +79,7 @@
                 />
 
             <TextView
+                android:id="@+id/u_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="sample@gmail.com"
@@ -98,6 +101,7 @@
                 />
 
             <TextView
+                android:id="@+id/u_mobile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="+880173252436"
@@ -114,7 +118,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/button_bg"
-            android:text="LOGIN NOW"
+            android:text="UPDATE PROFILE"
             android:textColor="@color/white"
             android:fontFamily="@font/poppins_bold"
             android:textSize="14sp"

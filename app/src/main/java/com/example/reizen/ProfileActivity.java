@@ -112,6 +112,10 @@ public class ProfileActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), WishlistActivity.class);
                     startActivity(intent);
                 }
+                else if (id == R.id.HelpMenu){
+                    Intent intent = new Intent(getApplicationContext(), HelpActivity.class);
+                    startActivity(intent);
+                }
                 else if (id == R.id.AboutMenu){
                     Intent intent = new Intent(getApplicationContext(), AboutActivity.class);
                     startActivity(intent);

@@ -121,6 +121,7 @@
             android:paddingVertical="8dp"
             android:text="Go Place List"
             android:textAlignment="center"
+            android:visibility="gone"
             />
 
 

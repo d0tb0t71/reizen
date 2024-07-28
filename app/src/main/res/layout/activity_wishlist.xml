@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:openDrawer="start"
     android:fitsSystemWindows="true"
-    tools:context=".PlaceListActivity"
+    tools:context=".WishlistActivity"
     >
 
     <com.google.android.material.navigation.NavigationView

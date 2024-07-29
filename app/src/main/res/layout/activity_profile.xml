@@ -16,10 +16,10 @@
         android:layout_height="match_parent"
         app:menu="@menu/drawer_item"
         app:headerLayout="@layout/drawer_header"
-        android:background="@color/white"
+        android:background="@color/darkBlue"
         android:layout_gravity="start"
-        app:itemIconTint="@color/black"
-        app:itemTextColor="@color/black"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
         android:visibility="visible"
         />
 

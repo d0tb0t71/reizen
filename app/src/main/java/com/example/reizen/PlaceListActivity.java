@@ -1,17 +1,20 @@
 package com.example.reizen;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -23,8 +26,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.reizen.adapters.PlaceAdapter;
 import com.example.reizen.interfaces.OnClickListeners;
 import com.example.reizen.models.PlaceModel;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
@@ -98,9 +105,7 @@ public class PlaceListActivity extends AppCompatActivity implements OnClickListe
                     startActivity(intent);
                 }
                 else if (id == R.id.LogoutMenu){
-                    FirebaseAuth.getInstance().signOut();
-                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                    finishAffinity();
+                    logout();
                 }
 
                 return false;
@@ -177,7 +182,7 @@ public class PlaceListActivity extends AppCompatActivity implements OnClickListe
 
                     LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
                     placeListRecyclerView.setLayoutManager(layoutManager);
-                    placeAdapter = new PlaceAdapter(getApplicationContext(),placeList, PlaceListActivity.this);
+                    placeAdapter = new PlaceAdapter(getApplicationContext(),placeList, PlaceListActivity.this, false);
                     placeListRecyclerView.setAdapter(placeAdapter);
 
                     progressView.setVisibility(View.GONE);
@@ -202,5 +207,78 @@ public class PlaceListActivity extends AppCompatActivity implements OnClickListe
             startActivity(intent);
         }
 
+    }
+
+    @Override
+    public <T> void onOptionMenuClicked(T model , View view) {
+
+        if (model instanceof PlaceModel) {
+
+            PopupMenu popupMenu = new PopupMenu(getApplicationContext(), view);
+            popupMenu.getMenuInflater().inflate(R.menu.popup_item, popupMenu.getMenu());
+            popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    if(item.getItemId() == R.id.delete) {
+
+                        FirebaseFirestore db = FirebaseFirestore.getInstance();
+                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                        db.collection("users")
+                                .document(user.getUid())
+                                .collection("wishlist")
+                                .document(((PlaceModel) model).getName())
+                                .delete()
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        placeList.remove(model);
+                                        placeAdapter.notifyDataSetChanged();
+                                        Toast.makeText(getApplicationContext(), "Place deleted from wishlist", Toast.LENGTH_SHORT).show();
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(getApplicationContext(), "Failed to delete place from wishlist", Toast.LENGTH_SHORT).show();
+
+                                    }
+                                });
+
+
+
+                        return true;
+
+                    }else {
+                        return false;
+                    }
+                }
+            });
+
+        }
+
+    }
+
+
+
+    private void logout(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Do you want to logout ?");
+        builder.setTitle("Logout");
+        builder.setCancelable(false);
+
+        builder.setPositiveButton("Yes", (DialogInterface.OnClickListener) (dialog, which) -> {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            finishAffinity();
+        });
+
+        builder.setNegativeButton("No", (DialogInterface.OnClickListener) (dialog, which) -> {
+            dialog.cancel();
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }

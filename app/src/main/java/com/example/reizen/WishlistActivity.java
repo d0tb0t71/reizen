@@ -1,9 +1,13 @@
 package com.example.reizen;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -11,6 +15,7 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -72,7 +77,7 @@ public class WishlistActivity extends AppCompatActivity implements OnClickListen
 
         placeList = new ArrayList<>();
 
-        placeAdapter = new PlaceAdapter(getApplicationContext(),placeList, WishlistActivity.this);
+        placeAdapter = new PlaceAdapter(getApplicationContext(),placeList, WishlistActivity.this, true);
         wishlistListRecyclerView.setAdapter(placeAdapter);
 
         db = FirebaseFirestore.getInstance();
@@ -113,9 +118,7 @@ public class WishlistActivity extends AppCompatActivity implements OnClickListen
                     startActivity(intent);
                 }
                 else if (id == R.id.LogoutMenu){
-                    FirebaseAuth.getInstance().signOut();
-                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                    finishAffinity();
+                    logout();
                 }
 
                 return false;
@@ -170,5 +173,75 @@ public class WishlistActivity extends AppCompatActivity implements OnClickListen
             startActivity(intent);
         }
 
+    }
+
+
+    @Override
+    public <T> void onOptionMenuClicked(T model , View view) {
+
+        Log.d("--->>> menuItem - ", " MODEL SHOW" );
+
+
+        if (model instanceof PlaceModel) {
+
+            Log.d("--->>> menuItem - ", " MODEL OK" );
+
+
+            PopupMenu popupMenu = new PopupMenu(getApplicationContext(), view);
+            popupMenu.getMenuInflater().inflate(R.menu.popup_item, popupMenu.getMenu());
+            popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    if(item.getItemId() == R.id.delete) {
+
+                        FirebaseFirestore db = FirebaseFirestore.getInstance();
+                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                        db.collection("users")
+                                .document(user.getUid())
+                                .collection("wishlist")
+                                .document(((PlaceModel) model).getName())
+                                .delete();
+
+                        Toast.makeText(getApplicationContext(), "Place deleted from wishlist", Toast.LENGTH_SHORT).show();
+
+                        Log.d("--->>> menuItem - ", "TRUE" );
+
+                        return true;
+
+                    }else {
+
+                        Log.d("--->>> menuItem - ", "FALSE" );
+
+                        return false;
+                    }
+                }
+            });
+
+            popupMenu.show();
+
+        }
+
+    }
+
+    private void logout(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Do you want to logout ?");
+        builder.setTitle("Logout");
+        builder.setCancelable(false);
+
+        builder.setPositiveButton("Yes", (DialogInterface.OnClickListener) (dialog, which) -> {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            finishAffinity();
+        });
+
+        builder.setNegativeButton("No", (DialogInterface.OnClickListener) (dialog, which) -> {
+            dialog.cancel();
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }

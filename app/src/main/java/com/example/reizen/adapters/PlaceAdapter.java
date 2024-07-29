@@ -1,11 +1,15 @@
 package com.example.reizen.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +19,9 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.reizen.R;
 import com.example.reizen.interfaces.OnClickListeners;
 import com.example.reizen.models.PlaceModel;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
@@ -23,11 +30,13 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.MyViewHolder
     ArrayList<PlaceModel> list;
 
     OnClickListeners onClickListeners;
+    Boolean showMore;
 
-    public PlaceAdapter(Context context, ArrayList<PlaceModel> list, OnClickListeners listener) {
+    public PlaceAdapter(Context context, ArrayList<PlaceModel> list, OnClickListeners listener, Boolean showMore) {
         this.context = context;
         this.list = list;
         onClickListeners = listener;
+        this.showMore = showMore;
     }
 
     @NonNull
@@ -62,6 +71,15 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.MyViewHolder
             }
         });
 
+        holder.moreBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Log.d("--->>> More Button - " , "Clicked");
+                onClickListeners.onOptionMenuClicked(placeModel, v);
+            }
+        });
+
     }
 
     @Override
@@ -72,7 +90,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.MyViewHolder
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView placeName,location;
-        ImageView placeImageIV;
+        ImageView placeImageIV, moreBtn;
 
 
         public MyViewHolder(@NonNull View itemView) {
@@ -81,6 +99,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.MyViewHolder
             placeName = itemView.findViewById(R.id.placeNameTV);
             location = itemView.findViewById(R.id.placeLocationTV);
             placeImageIV = itemView.findViewById(R.id.placeImageIV);
+            moreBtn = itemView.findViewById(R.id.moreBtn);
 
 
 

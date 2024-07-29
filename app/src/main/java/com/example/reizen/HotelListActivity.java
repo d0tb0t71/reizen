@@ -1,5 +1,6 @@
 package com.example.reizen;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -100,9 +102,7 @@ public class HotelListActivity extends AppCompatActivity implements OnClickListe
                     startActivity(intent);
                 }
                 else if (id == R.id.LogoutMenu){
-                    FirebaseAuth.getInstance().signOut();
-                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                    finishAffinity();
+                    logout();
                 }
 
                 return false;
@@ -153,5 +153,36 @@ public class HotelListActivity extends AppCompatActivity implements OnClickListe
 //            startActivity(intent);
         }
 
+    }
+
+    @Override
+    public <T> void onOptionMenuClicked(T model, View v) {
+
+    }
+
+    private void logout(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Do you want to logout ?");
+        builder.setTitle("Logout");
+        builder.setCancelable(false);
+
+        builder.setPositiveButton("Yes", (DialogInterface.OnClickListener) (dialog, which) -> {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            finishAffinity();
+        });
+
+        builder.setNegativeButton("No", (DialogInterface.OnClickListener) (dialog, which) -> {
+            dialog.cancel();
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+        super.onPointerCaptureChanged(hasCapture);
     }
 }

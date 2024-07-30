@@ -46,39 +46,13 @@
             android:gravity="center"
             android:orientation="vertical"
             android:layout_margin="30dp"
+            android:layout_below="@id/top_view"
             >
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Reizen"
-                android:textSize="30sp"
-                android:fontFamily="@font/inter_regular"
-                android:textColor="@color/navyBlue"
-                android:textAlignment="center"
-                />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Login"
-                android:textSize="25sp"
-                android:fontFamily="@font/poppins_bold"
-                android:textAlignment="center"
-                />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Log in to continue"
-                android:textSize="12sp"
-                android:fontFamily="@font/poppins_regular"
-                android:textAlignment="center"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="EMAIL"
+                android:text="FULL NAME"
                 android:fontFamily="@font/poppins_regular"
                 android:textAlignment="textStart"
                 android:layout_marginTop="20dp"
@@ -86,11 +60,11 @@
                 />
 
             <EditText
-                android:id="@+id/log_email"
+                android:id="@+id/up_fullname"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/edittext_bg"
-                android:hint="sample@email.com"
+                android:hint="FULLNAME"
                 android:padding="12dp"
                 />
 
@@ -99,61 +73,31 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
                 android:paddingVertical="8dp"
-                android:text="PASSWORD"
+                android:text="MOBILE"
                 android:textAlignment="textStart"
                 />
 
             <EditText
-                android:id="@+id/log_pass"
+                android:id="@+id/up_mobile"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/edittext_bg"
-                android:hint="********"
+                android:hint="MOBILE"
                 android:padding="12dp"
                 />
 
-            <TextView
-                android:id="@+id/log_forgot"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_regular"
-                android:paddingVertical="8dp"
-                android:text="Forgot Password?"
-                android:textAlignment="textEnd"
-                />
-
             <Button
-                android:id="@+id/log_now"
+                android:id="@+id/up_now"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/button_bg"
-                android:text="LOGIN NOW"
+                android:text="UPDATE NOW"
                 android:textColor="@color/white"
                 android:fontFamily="@font/poppins_bold"
                 android:textSize="14sp"
-                android:layout_marginVertical="8dp"
+                android:layout_marginVertical="20dp"
                 />
 
-            <TextView
-                android:id="@+id/go_register"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_regular"
-                android:paddingVertical="8dp"
-                android:text="Not registered yet? Register in here."
-                android:textAlignment="center"
-                />
-
-            <TextView
-                android:id="@+id/go_placelist"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_regular"
-                android:paddingVertical="8dp"
-                android:text="Go Place List"
-                android:textAlignment="center"
-                android:visibility="gone"
-                />
 
 
         </LinearLayout>

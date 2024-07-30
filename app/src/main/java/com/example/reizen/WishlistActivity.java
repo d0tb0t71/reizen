@@ -179,13 +179,7 @@ public class WishlistActivity extends AppCompatActivity implements OnClickListen
     @Override
     public <T> void onOptionMenuClicked(T model , View view) {
 
-        Log.d("--->>> menuItem - ", " MODEL SHOW" );
-
-
         if (model instanceof PlaceModel) {
-
-            Log.d("--->>> menuItem - ", " MODEL OK" );
-
 
             PopupMenu popupMenu = new PopupMenu(getApplicationContext(), view);
             popupMenu.getMenuInflater().inflate(R.menu.popup_item, popupMenu.getMenu());
@@ -205,13 +199,12 @@ public class WishlistActivity extends AppCompatActivity implements OnClickListen
 
                         Toast.makeText(getApplicationContext(), "Place deleted from wishlist", Toast.LENGTH_SHORT).show();
 
-                        Log.d("--->>> menuItem - ", "TRUE" );
+                        placeList.remove(model);
+                        placeAdapter.notifyDataSetChanged();
 
                         return true;
 
                     }else {
-
-                        Log.d("--->>> menuItem - ", "FALSE" );
 
                         return false;
                     }

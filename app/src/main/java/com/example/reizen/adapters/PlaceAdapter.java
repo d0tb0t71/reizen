@@ -54,6 +54,10 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.MyViewHolder
         holder.placeName.setText(placeModel.getName());
         holder.location.setText(placeModel.getAddress());
 
+        if(showMore == false){
+            holder.moreBtn.setVisibility(View.GONE);
+        }
+
         Glide.with(context)
                 .load(placeModel.getImg_url())
                 .apply(new RequestOptions()

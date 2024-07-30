@@ -64,6 +64,7 @@
            android:layout_height="wrap_content"
            android:weightSum="4"
            android:layout_alignParentBottom="true"
+           android:layout_marginHorizontal="10dp"
            >
 
            <TextView
@@ -71,9 +72,12 @@
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:layout_weight="1"
-               android:text="First"
+               android:text="⏮ First"
                android:textAlignment="center"
                android:layout_margin="5dp"
+               android:background="#078EFA"
+               android:textColor="@color/white"
+               android:paddingVertical="8dp"
                />
 
            <TextView
@@ -81,9 +85,13 @@
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:layout_weight="1"
-               android:text="Prev"
+               android:text="◀ Prev"
                android:textAlignment="center"
                android:layout_margin="5dp"
+               android:background="#078EFA"
+               android:textColor="@color/white"
+               android:paddingVertical="8dp"
+
                />
 
            <TextView
@@ -91,9 +99,13 @@
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:layout_weight="1"
-               android:text="Next"
+               android:text="Next ▶"
                android:textAlignment="center"
                android:layout_margin="5dp"
+               android:background="#078EFA"
+               android:textColor="@color/white"
+               android:paddingVertical="8dp"
+
                />
 
            <TextView
@@ -101,9 +113,13 @@
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:layout_weight="1"
-               android:text="Last"
+               android:text="Last ⏭"
                android:textAlignment="center"
                android:layout_margin="5dp"
+               android:background="#078EFA"
+               android:textColor="@color/white"
+               android:paddingVertical="8dp"
+
                />
 
 
